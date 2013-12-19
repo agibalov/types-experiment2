@@ -25,12 +25,17 @@ public class App {
         operationRepository.addOperation(new CastIntToDoubleOperation(intType, doubleType));
         operationRepository.addOperation(new CastDoubleToIntOperation(doubleType, intType));
         
-        ImplicitCastor implicitCastor = new DefaultImplicitCastor(operationRepository);
+        OperationInvoker operationInvoker = new OperationInvoker();        
+        ImplicitCastor implicitCastor = new DefaultImplicitCastor(operationRepository, operationInvoker);
         OperationMatch operationMatch = operationRepository.findOperation(implicitCastor, Intention.Add, Arrays.<Expression>asList(
                 new IntConstExpression(intType), 
                 new DoubleConstExpression(doubleType)));
         
-        System.out.println(operationMatch);
+        Expression expression = operationInvoker.invoke(
+                operationMatch.operation, 
+                operationMatch.parameterMatches);
+        
+        System.out.println(expression);
     }
     
     public static interface ImplicitCastor {
@@ -40,9 +45,11 @@ public class App {
     public static class DefaultImplicitCastor implements ImplicitCastor {
         private final static NoImplicitCastImplicitCastor noImplicitCastImplicitCastor = new NoImplicitCastImplicitCastor();
         private final OperationRepository operationRepository;
+        private final OperationInvoker operationInvoker;
         
-        public DefaultImplicitCastor(OperationRepository operationRepository) {
+        public DefaultImplicitCastor(OperationRepository operationRepository, OperationInvoker operationInvoker) {
             this.operationRepository = operationRepository;
+            this.operationInvoker = operationInvoker;
         }
         
         public Expression wrapWithImplicitCast(Type desiredType, Expression e) {
@@ -56,15 +63,21 @@ public class App {
                 return null;
             }
             
+            Operation implicitCastOperation = implicitCastMatch.operation;
             List<ParameterMatch> parameterMatches = implicitCastMatch.parameterMatches;
+            return operationInvoker.invoke(implicitCastOperation, parameterMatches);
+        }        
+    }
+    
+    public static class OperationInvoker {
+        public Expression invoke(Operation operation, List<ParameterMatch> parameterMatches) {
             List<Expression> arguments = new ArrayList<Expression>();
             for(ParameterMatch parameterMatch : parameterMatches) {
                 arguments.add(parameterMatch.acceptableArgument);
-            }            
-            
-            Operation implicitCastOperation = implicitCastMatch.operation;            
-            return implicitCastOperation.process(arguments);
-        }        
+            }
+                        
+            return operation.process(arguments);
+        }
     }
     
     public static class NoImplicitCastImplicitCastor implements ImplicitCastor {

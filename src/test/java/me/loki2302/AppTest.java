@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import me.loki2302.App.DefaultImplicitCastor;
 import me.loki2302.App.ImplicitCastor;
+import me.loki2302.App.OperationInvoker;
 import me.loki2302.App.OperationMatch;
 import me.loki2302.App.OperationRepository;
 import me.loki2302.expressions.DoubleConstExpression;
@@ -38,7 +39,8 @@ public class AppTest {
         operationRepository.addOperation(new CastIntToDoubleOperation(intType, doubleType));
         operationRepository.addOperation(new CastDoubleToIntOperation(doubleType, intType));
         
-        ImplicitCastor implicitCastor = new DefaultImplicitCastor(operationRepository);
+        OperationInvoker operationInvoker = new OperationInvoker();
+        ImplicitCastor implicitCastor = new DefaultImplicitCastor(operationRepository, operationInvoker);
         OperationMatch operationMatch = operationRepository.findOperation(implicitCastor, Intention.Add, Arrays.<Expression>asList(
                 left, 
                 right));
