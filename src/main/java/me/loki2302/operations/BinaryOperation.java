@@ -3,9 +3,9 @@ package me.loki2302.operations;
 import java.util.Arrays;
 import java.util.List;
 
-import me.loki2302.App.ExpressionConstraint;
 import me.loki2302.App.Parameter;
 import me.loki2302.expressions.Expression;
+import me.loki2302.expressions.constraints.ExpressionConstraint;
 
 public abstract class BinaryOperation implements Operation {
     public List<Parameter> getParameters() {

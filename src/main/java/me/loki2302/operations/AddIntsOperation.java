@@ -1,13 +1,14 @@
 package me.loki2302.operations;
 
+import static me.loki2302.expressions.constraints.ExpressionConstraints.isOfType;
+
 import java.util.Arrays;
 import java.util.List;
 
-import me.loki2302.App;
 import me.loki2302.Type;
-import me.loki2302.App.ExpressionConstraint;
 import me.loki2302.expressions.AddIntsExpression;
 import me.loki2302.expressions.Expression;
+import me.loki2302.expressions.constraints.ExpressionConstraint;
 
 public class AddIntsOperation extends BinaryOperation {
     private final Type intType;
@@ -22,12 +23,12 @@ public class AddIntsOperation extends BinaryOperation {
     
     @Override
     protected ExpressionConstraint getLeftConstraint() {
-        return App.isOfType(intType);
+        return isOfType(intType);
     }
 
     @Override
     protected ExpressionConstraint getRightConstraint() {
-        return App.isOfType(intType);
+        return isOfType(intType);
     }
 
     @Override

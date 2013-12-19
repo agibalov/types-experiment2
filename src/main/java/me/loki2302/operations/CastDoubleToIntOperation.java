@@ -1,13 +1,14 @@
 package me.loki2302.operations;
 
+import static me.loki2302.expressions.constraints.ExpressionConstraints.isOfType;
+
 import java.util.Arrays;
 import java.util.List;
 
-import me.loki2302.App;
 import me.loki2302.Type;
-import me.loki2302.App.ExpressionConstraint;
 import me.loki2302.expressions.CastDoubleToIntExpression;
 import me.loki2302.expressions.Expression;
+import me.loki2302.expressions.constraints.ExpressionConstraint;
 
 public class CastDoubleToIntOperation extends UnaryOperation {
     private final Type doubleType;
@@ -24,7 +25,7 @@ public class CastDoubleToIntOperation extends UnaryOperation {
 
     @Override
     protected ExpressionConstraint getInputConstraint() {
-        return App.isOfType(doubleType);
+        return isOfType(doubleType);
     }
 
     @Override

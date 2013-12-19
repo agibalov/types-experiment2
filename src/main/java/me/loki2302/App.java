@@ -7,6 +7,8 @@ import java.util.List;
 import me.loki2302.expressions.DoubleConstExpression;
 import me.loki2302.expressions.Expression;
 import me.loki2302.expressions.IntConstExpression;
+import me.loki2302.expressions.constraints.ConstraintMatch;
+import me.loki2302.expressions.constraints.ExpressionConstraint;
 import me.loki2302.operations.AddDoublesOperation;
 import me.loki2302.operations.AddIntsOperation;
 import me.loki2302.operations.CastDoubleToIntOperation;
@@ -206,55 +208,5 @@ public class App {
         public ExpressionConstraint getExpressionConstraint() {
             return expressionConstraint;
         }
-    }
-    
-    public static interface ExpressionConstraint {
-        ConstraintMatch match(Expression expression, ImplicitCastor implicitCastor);
-    }
-    
-    public static class ExpressionHasResultTypeExpressionConstraint implements ExpressionConstraint {
-        private final Type requiredType;
-        
-        public ExpressionHasResultTypeExpressionConstraint(Type requiredType) {
-            this.requiredType = requiredType;
-        }
-        
-        public ConstraintMatch match(Expression expression, ImplicitCastor implicitCastor) {
-            Type expressionType = expression.getResultType();
-            if(expressionType.equals(requiredType)) {
-                return ConstraintMatch.match(0, expression);
-            }
-            
-            Expression acceptableExpression = implicitCastor.wrapWithImplicitCast(requiredType, expression);
-            if(acceptableExpression == null) {
-                return ConstraintMatch.noMatch();
-            }
-            
-            return ConstraintMatch.match(1, acceptableExpression);
-        }
-    }    
-    
-    public static class ConstraintMatch {
-        public boolean ok;
-        public int score;
-        public Expression expression;
-        
-        public static ConstraintMatch match(int score, Expression expression) {
-            ConstraintMatch match = new ConstraintMatch();
-            match.ok = true;
-            match.score = score;
-            match.expression = expression;
-            return match;
-        }
-        
-        public static ConstraintMatch noMatch() {
-            ConstraintMatch match = new ConstraintMatch();
-            match.ok = false;            
-            return match;
-        }
-    }
-    
-    public static ExpressionConstraint isOfType(Type type) {
-        return new ExpressionHasResultTypeExpressionConstraint(type);
     }
 }
