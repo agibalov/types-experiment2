@@ -1,11 +1,10 @@
 package me.loki2302;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
 import me.loki2302.App.DefaultImplicitCastor;
-import me.loki2302.App.ImplicitCastor;
 import me.loki2302.App.OperationInvoker;
 import me.loki2302.App.OperationMatch;
 import me.loki2302.App.OperationRepository;
