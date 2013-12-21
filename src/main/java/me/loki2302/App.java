@@ -27,7 +27,7 @@ public class App {
         operationRepository.addOperation(new CastIntToDoubleOperation(intType, doubleType));
         operationRepository.addOperation(new CastDoubleToIntOperation(doubleType, intType));
         
-        OperationInvoker operationInvoker = new OperationInvoker();        
+        OperationInvoker operationInvoker = new OperationInvoker();
         
         DefaultImplicitCastor implicitCastor = new DefaultImplicitCastor(operationRepository, operationInvoker);
         implicitCastor.allowImplicitCast(intType, doubleType);
@@ -64,26 +64,11 @@ public class App {
         }
         
         public Expression wrapWithImplicitCast(Type desiredType, Expression e) {
-            boolean allowImplicitCast = false;
-            Type fromType = e.getResultType();            
-            for(ImplicitCast implicitCast : implicitCasts) {
-                if(!implicitCast.fromType.equals(fromType)) {
-                    continue;
-                }
-                
-                if(!implicitCast.toType.equals(desiredType)) {
-                    continue;
-                }
-                
-                allowImplicitCast = true;
-                break;
-            }
-            
-            if(!allowImplicitCast) {
+            Type fromType = e.getResultType();
+            if(!isImplicitCastAllowed(fromType, desiredType)) {
                 return null;
             }
             
-            // TODO: I also need to somehow tell it the resultType I want - desiredType in this case
             OperationMatch implicitCastMatch = operationRepository.findOperation(
                     noImplicitCastImplicitCastor, 
                     Intention.Cast, 
@@ -95,7 +80,28 @@ public class App {
             
             Operation implicitCastOperation = implicitCastMatch.operation;
             List<ParameterMatch> parameterMatches = implicitCastMatch.parameterMatches;
-            return operationInvoker.invoke(implicitCastOperation, parameterMatches);
+            Expression castExpression = operationInvoker.invoke(implicitCastOperation, parameterMatches);
+            if(!castExpression.getResultType().equals(desiredType)) {
+                return null;
+            }
+            
+            return castExpression;
+        }
+        
+        private boolean isImplicitCastAllowed(Type fromType, Type toType) {
+            for(ImplicitCast implicitCast : implicitCasts) {
+                if(!implicitCast.fromType.equals(fromType)) {
+                    continue;
+                }
+                
+                if(!implicitCast.toType.equals(toType)) {
+                    continue;
+                }
+                
+                return true;
+            }
+            
+            return false;
         }
         
         private static class ImplicitCast {
