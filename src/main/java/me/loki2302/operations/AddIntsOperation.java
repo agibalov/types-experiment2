@@ -2,9 +2,6 @@ package me.loki2302.operations;
 
 import static me.loki2302.expressions.constraints.ExpressionConstraints.isOfType;
 
-import java.util.Arrays;
-import java.util.List;
-
 import me.loki2302.Type;
 import me.loki2302.expressions.AddIntsExpression;
 import me.loki2302.expressions.Expression;
@@ -17,8 +14,8 @@ public class AddIntsOperation extends BinaryOperation {
         this.intType = intType;
     }
     
-    public List<Intention> getIntentions() {
-        return Arrays.asList(Intention.Add);
+    public Intention getIntention() {
+        return Intention.Add;
     }
     
     @Override

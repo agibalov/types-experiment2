@@ -2,9 +2,6 @@ package me.loki2302.operations;
 
 import static me.loki2302.expressions.constraints.ExpressionConstraints.isOfType;
 
-import java.util.Arrays;
-import java.util.List;
-
 import me.loki2302.Type;
 import me.loki2302.expressions.CastDoubleToIntExpression;
 import me.loki2302.expressions.Expression;
@@ -19,8 +16,8 @@ public class CastDoubleToIntOperation extends UnaryOperation {
         this.intType = intType;            
     }
 
-    public List<Intention> getIntentions() {
-        return Arrays.asList(Intention.ExcplicitCast);
+    public Intention getIntention() {
+        return Intention.Cast;
     }
 
     @Override

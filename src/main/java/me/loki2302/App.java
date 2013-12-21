@@ -28,7 +28,10 @@ public class App {
         operationRepository.addOperation(new CastDoubleToIntOperation(doubleType, intType));
         
         OperationInvoker operationInvoker = new OperationInvoker();        
-        ImplicitCastor implicitCastor = new DefaultImplicitCastor(operationRepository, operationInvoker);
+        
+        DefaultImplicitCastor implicitCastor = new DefaultImplicitCastor(operationRepository, operationInvoker);
+        implicitCastor.allowImplicitCast(intType, doubleType);
+        
         OperationMatch operationMatch = operationRepository.findOperation(implicitCastor, Intention.Add, Arrays.<Expression>asList(
                 new IntConstExpression(intType), 
                 new DoubleConstExpression(doubleType)));
@@ -46,6 +49,7 @@ public class App {
     
     public static class DefaultImplicitCastor implements ImplicitCastor {
         private final static NoImplicitCastImplicitCastor noImplicitCastImplicitCastor = new NoImplicitCastImplicitCastor();
+        private final List<ImplicitCast> implicitCasts = new ArrayList<ImplicitCast>();
         private final OperationRepository operationRepository;
         private final OperationInvoker operationInvoker;
         
@@ -54,11 +58,35 @@ public class App {
             this.operationInvoker = operationInvoker;
         }
         
+        public void allowImplicitCast(Type fromType, Type toType) {
+            ImplicitCast implicitCast = new ImplicitCast(fromType, toType);
+            implicitCasts.add(implicitCast);
+        }
+        
         public Expression wrapWithImplicitCast(Type desiredType, Expression e) {
+            boolean allowImplicitCast = false;
+            Type fromType = e.getResultType();            
+            for(ImplicitCast implicitCast : implicitCasts) {
+                if(!implicitCast.fromType.equals(fromType)) {
+                    continue;
+                }
+                
+                if(!implicitCast.toType.equals(desiredType)) {
+                    continue;
+                }
+                
+                allowImplicitCast = true;
+                break;
+            }
+            
+            if(!allowImplicitCast) {
+                return null;
+            }
+            
             // TODO: I also need to somehow tell it the resultType I want - desiredType in this case
             OperationMatch implicitCastMatch = operationRepository.findOperation(
                     noImplicitCastImplicitCastor, 
-                    Intention.ImplicitCast, 
+                    Intention.Cast, 
                     Arrays.asList(e));
             
             if(implicitCastMatch == null) {
@@ -68,7 +96,17 @@ public class App {
             Operation implicitCastOperation = implicitCastMatch.operation;
             List<ParameterMatch> parameterMatches = implicitCastMatch.parameterMatches;
             return operationInvoker.invoke(implicitCastOperation, parameterMatches);
-        }        
+        }
+        
+        private static class ImplicitCast {
+            public Type fromType;
+            public Type toType;
+            
+            public ImplicitCast(Type fromType, Type toType) {
+                this.fromType = fromType;
+                this.toType = toType;
+            }
+        }
     }
     
     public static class OperationInvoker {
@@ -141,8 +179,7 @@ public class App {
         public OperationMatch findOperation(ImplicitCastor implicitCastor, Intention intention, List<Expression> arguments) {            
             List<OperationMatch> operationMatches = new ArrayList<OperationMatch>();            
             for(Operation operation : operations) {
-                List<Intention> intentions = operation.getIntentions();
-                if(!intentions.contains(intention)) {
+                if(!operation.getIntention().equals(intention)) {
                     continue;
                 }
                 

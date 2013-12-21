@@ -40,7 +40,10 @@ public class AppTest {
         operationRepository.addOperation(new CastDoubleToIntOperation(doubleType, intType));
         
         OperationInvoker operationInvoker = new OperationInvoker();
-        ImplicitCastor implicitCastor = new DefaultImplicitCastor(operationRepository, operationInvoker);
+        
+        DefaultImplicitCastor implicitCastor = new DefaultImplicitCastor(operationRepository, operationInvoker);
+        implicitCastor.allowImplicitCast(intType, doubleType);
+        
         OperationMatch operationMatch = operationRepository.findOperation(implicitCastor, Intention.Add, Arrays.<Expression>asList(
                 left, 
                 right));

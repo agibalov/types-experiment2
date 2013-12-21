@@ -6,7 +6,7 @@ import me.loki2302.App.Parameter;
 import me.loki2302.expressions.Expression;
 
 public interface Operation {
-    List<Intention> getIntentions();
+    Intention getIntention();
     List<Parameter> getParameters();
     Expression process(List<Expression> arguments);
 }
