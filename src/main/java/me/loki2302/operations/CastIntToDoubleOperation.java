@@ -1,7 +1,6 @@
 package me.loki2302.operations;
 
 import static me.loki2302.expressions.constraints.ExpressionConstraints.isOfType;
-
 import me.loki2302.Type;
 import me.loki2302.expressions.CastIntToDoubleExpression;
 import me.loki2302.expressions.Expression;
@@ -16,6 +15,7 @@ public class CastIntToDoubleOperation extends UnaryOperation {
         this.doubleType = doubleType;
     }
 
+    @Override
     public Intention getIntention() {
         return Intention.Cast;
     }
@@ -26,7 +26,7 @@ public class CastIntToDoubleOperation extends UnaryOperation {
     }
 
     @Override
-    protected Expression processUnary(Expression e) {
-        return new CastIntToDoubleExpression(doubleType, e);
-    }
+    protected Expression processUnary(Expression input) {
+        return new CastIntToDoubleExpression(doubleType, input);
+    }        
 }

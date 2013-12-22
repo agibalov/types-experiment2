@@ -11,6 +11,7 @@ public class ExpressionHasResultTypeExpressionConstraint implements ExpressionCo
         this.requiredType = requiredType;
     }
     
+    @Override
     public ConstraintMatch match(Expression expression, ImplicitCastor implicitCastor) {
         Type expressionType = expression.getResultType();
         if(expressionType.equals(requiredType)) {
