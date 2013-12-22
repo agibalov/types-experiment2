@@ -2,7 +2,6 @@ package me.loki2302.compiler;
 
 import java.util.Arrays;
 
-import me.loki2302.App;
 import me.loki2302.Type;
 import me.loki2302.dom.DOMAddExpression;
 import me.loki2302.dom.DOMDoubleLiteralExpression;
@@ -32,11 +31,13 @@ public class CompilingDOMExpressionVisitor implements DOMExpressionVisitor<Expre
 
     @Override
     public Expression visit(DOMIntLiteralExpression e) {
+        // TODO: replace this with call to operation
         return new IntConstExpression(intType);
     }
 
     @Override
     public Expression visit(DOMDoubleLiteralExpression e) {
+        // TODO: replace this with call to operation
         return new DoubleConstExpression(doubleType);
     }
 
