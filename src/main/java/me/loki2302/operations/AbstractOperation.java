@@ -3,7 +3,7 @@ package me.loki2302.operations;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.loki2302.App.ImplicitCastor;
+import me.loki2302.compiler.ImplicitCastor;
 import me.loki2302.expressions.Expression;
 import me.loki2302.expressions.constraints.ConstraintMatch;
 import me.loki2302.expressions.constraints.ExpressionConstraint;

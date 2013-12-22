@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
-import me.loki2302.App.DefaultImplicitCastor;
-import me.loki2302.App.OperationRepository;
+import me.loki2302.compiler.DefaultImplicitCastor;
+import me.loki2302.compiler.OperationRepository;
 import me.loki2302.expressions.DoubleConstExpression;
 import me.loki2302.expressions.Expression;
 import me.loki2302.expressions.IntConstExpression;
