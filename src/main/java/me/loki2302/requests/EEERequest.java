@@ -2,7 +2,6 @@ package me.loki2302.requests;
 
 import me.loki2302.expressions.Expression;
 
-
 public abstract class EEERequest implements Request<Expression> {
     @Override
     public int getArgumentCount() {

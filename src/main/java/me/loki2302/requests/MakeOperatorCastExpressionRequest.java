@@ -4,7 +4,6 @@ import me.loki2302.Intention;
 import me.loki2302.expressions.Expression;
 import me.loki2302.types.Type;
 
-
 public class MakeOperatorCastExpressionRequest implements Request<Expression> {
     private final Type targetType;
     private final Expression expression;

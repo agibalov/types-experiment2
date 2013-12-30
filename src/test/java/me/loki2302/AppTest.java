@@ -8,6 +8,10 @@ import me.loki2302.operations.AddDoublesOperation;
 import me.loki2302.operations.AddIntsOperation;
 import me.loki2302.operations.CastDoubleToIntOperation;
 import me.loki2302.operations.CastIntToDoubleOperation;
+import me.loki2302.operations.MakeDoubleConstExpressionOperation;
+import me.loki2302.operations.MakeIntConstExpressionOperation;
+import me.loki2302.requests.MakeDoubleConstExpressionRequest;
+import me.loki2302.requests.MakeIntConstExpressionRequest;
 import me.loki2302.requests.MakeOperatorAddExpressionRequest;
 import me.loki2302.requests.MakeOperatorCastExpressionRequest;
 import me.loki2302.requests.Request;
@@ -20,6 +24,18 @@ public class AppTest {
     private final static Type intType = new PrimitiveType("int");
     private final static Type doubleType = new PrimitiveType("double");
     private final static Compiler compiler = makeCompiler();
+    
+    @Test
+    public void canMakeIntConst() {
+        String result = compile(new MakeIntConstExpressionRequest("1"));
+        assertEquals("iconst(1)", result);
+    }
+    
+    @Test
+    public void canMakeDoubleConst() {
+        String result = compile(new MakeDoubleConstExpressionRequest("1"));
+        assertEquals("dconst(1)", result);
+    }
     
     @Test
     public void testIntAddInt() {
@@ -88,6 +104,8 @@ public class AppTest {
         operationRepository.addOperation(new AddDoublesOperation(doubleType));
         operationRepository.addOperation(castIntToDoubleOperation);
         operationRepository.addOperation(new CastDoubleToIntOperation(intType, doubleType));
+        operationRepository.addOperation(new MakeIntConstExpressionOperation(intType));
+        operationRepository.addOperation(new MakeDoubleConstExpressionOperation(doubleType));
         
         Compiler compiler = new Compiler(operationRepository, implicitCastOperationRepository);
         return compiler;
