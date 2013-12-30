@@ -2,7 +2,6 @@ package me.loki2302.expressions;
 
 import me.loki2302.types.Type;
 
-
 public class CastIntToDoubleExpression implements Expression {
     private final Type doubleType;
     private final Expression expression;

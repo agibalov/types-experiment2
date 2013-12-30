@@ -2,7 +2,6 @@ package me.loki2302.expressions;
 
 import me.loki2302.types.Type;
 
-
 public class IntConstExpression implements Expression {
     private final Type intType;
     private final String value;

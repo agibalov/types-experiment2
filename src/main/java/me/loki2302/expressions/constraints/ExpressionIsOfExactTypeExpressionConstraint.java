@@ -4,7 +4,6 @@ import me.loki2302.Compiler;
 import me.loki2302.expressions.Expression;
 import me.loki2302.types.Type;
 
-
 public class ExpressionIsOfExactTypeExpressionConstraint implements ExpressionConstraint {
     private final Type requiredType;
     

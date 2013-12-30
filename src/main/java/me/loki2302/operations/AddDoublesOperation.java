@@ -7,7 +7,6 @@ import me.loki2302.expressions.constraints.ExpressionConstraint;
 import me.loki2302.expressions.constraints.ExpressionIsOfCompatibleTypeExpressionConstraint;
 import me.loki2302.types.Type;
 
-
 public class AddDoublesOperation extends AbstractEEEOperation {
     private final Type doubleType;
     

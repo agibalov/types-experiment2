@@ -3,7 +3,6 @@ package me.loki2302.requests;
 import me.loki2302.Intention;
 import me.loki2302.expressions.Expression;
 
-
 public class MakeOperatorAddExpressionRequest extends EEERequest {
     private final Expression left;
     private final Expression right;

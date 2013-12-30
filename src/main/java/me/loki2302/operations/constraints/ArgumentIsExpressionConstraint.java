@@ -5,7 +5,6 @@ import me.loki2302.expressions.Expression;
 import me.loki2302.expressions.constraints.ConstrainedExpressionResult;
 import me.loki2302.expressions.constraints.ExpressionConstraint;
 
-
 public class ArgumentIsExpressionConstraint implements ArgumentConstraint {
     private final ExpressionConstraint expressionConstraint;
     

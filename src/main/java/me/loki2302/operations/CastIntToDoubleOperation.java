@@ -8,7 +8,6 @@ import me.loki2302.types.Type;
 import me.loki2302.types.constraints.TypeConstraint;
 import me.loki2302.types.constraints.TypeIsExactlyTypeConstraint;
 
-
 public class CastIntToDoubleOperation extends AbstractCastOperation {
     private final Type doubleType;
     private final Type intType;
