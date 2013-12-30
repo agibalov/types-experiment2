@@ -1,32 +1,35 @@
 package me.loki2302.operations;
 
-import static me.loki2302.expressions.constraints.ExpressionConstraints.isOfType;
-import me.loki2302.Type;
 import me.loki2302.expressions.CastDoubleToIntExpression;
 import me.loki2302.expressions.Expression;
 import me.loki2302.expressions.constraints.ExpressionConstraint;
+import me.loki2302.expressions.constraints.ExpressionIsOfExactTypeExpressionConstraint;
+import me.loki2302.types.Type;
+import me.loki2302.types.constraints.TypeConstraint;
+import me.loki2302.types.constraints.TypeIsExactlyTypeConstraint;
 
-public class CastDoubleToIntOperation extends UnaryOperation {
-    private final Type doubleType;
-    private final Type intType;        
+
+public class CastDoubleToIntOperation extends AbstractCastOperation {
+    private final Type intType;
+    private final Type doubleType;        
     
-    public CastDoubleToIntOperation(Type doubleType, Type intType) {
-        this.doubleType = doubleType;
-        this.intType = intType;            
+    public CastDoubleToIntOperation(Type intType, Type doubleType) {
+        this.intType = intType;
+        this.doubleType = doubleType;            
+    }
+    
+    @Override
+    protected TypeConstraint getTargetTypeConstraint() {
+        return new TypeIsExactlyTypeConstraint(intType);
     }
 
     @Override
-    public Intention getIntention() {
-        return Intention.Cast;
+    protected ExpressionConstraint getExpressionConstraint() {
+        return new ExpressionIsOfExactTypeExpressionConstraint(doubleType);
     }
 
     @Override
-    protected ExpressionConstraint getInputConstraint() {
-        return isOfType(doubleType);
-    }
-
-    @Override
-    protected Expression processUnary(Expression input) {
-        return new CastDoubleToIntExpression(intType, input);
+    protected Expression processSafe(Type targetType, Expression expression) {
+        return new CastDoubleToIntExpression(intType, expression);
     }        
 }

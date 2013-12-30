@@ -1,15 +1,5 @@
 package me.loki2302;
 
-import java.util.Arrays;
-
-import me.loki2302.compiler.CompilingDOMExpressionVisitor;
-import me.loki2302.compiler.DOMExpressionCompiler;
-import me.loki2302.compiler.DefaultImplicitCastor;
-import me.loki2302.compiler.OperationRepository;
-import me.loki2302.dom.DOMAddExpression;
-import me.loki2302.dom.DOMDoubleLiteralExpression;
-import me.loki2302.dom.DOMExpression;
-import me.loki2302.dom.DOMIntLiteralExpression;
 import me.loki2302.expressions.DoubleConstExpression;
 import me.loki2302.expressions.Expression;
 import me.loki2302.expressions.IntConstExpression;
@@ -17,41 +7,72 @@ import me.loki2302.operations.AddDoublesOperation;
 import me.loki2302.operations.AddIntsOperation;
 import me.loki2302.operations.CastDoubleToIntOperation;
 import me.loki2302.operations.CastIntToDoubleOperation;
-import me.loki2302.operations.Intention;
-import me.loki2302.operations.Operation;
+import me.loki2302.requests.MakeOperatorAddExpressionRequest;
+import me.loki2302.requests.MakeOperatorCastExpressionRequest;
+import me.loki2302.types.PrimitiveType;
+import me.loki2302.types.Type;
+
 
 public class App {
     public static void main(String[] args) {
-        Type intType = new Type("int");
-        Type doubleType = new Type("double");
+        Type intType = new PrimitiveType("int");
+        Type doubleType = new PrimitiveType("double");
+                
+        CastIntToDoubleOperation castIntToDoubleOperation = new CastIntToDoubleOperation(doubleType, intType);
+        OperationRepository implicitCastOperationRepository = new OperationRepository();
+        implicitCastOperationRepository.addOperation(castIntToDoubleOperation);
         
         OperationRepository operationRepository = new OperationRepository();
         operationRepository.addOperation(new AddIntsOperation(intType));
         operationRepository.addOperation(new AddDoublesOperation(doubleType));
-        operationRepository.addOperation(new CastDoubleToIntOperation(doubleType, intType));
+        operationRepository.addOperation(castIntToDoubleOperation);
+        operationRepository.addOperation(new CastDoubleToIntOperation(intType, doubleType));
         
-        Operation castIntToDoubleOperation = new CastIntToDoubleOperation(intType, doubleType);
-        operationRepository.addOperation(castIntToDoubleOperation);        
+        Compiler compiler = new Compiler(operationRepository, implicitCastOperationRepository);
+
+        if(true) {
+            Expression a = new IntConstExpression(intType, "1");
+            Expression b = new IntConstExpression(intType, "2");
+            Expression sum = compiler.compile(new MakeOperatorAddExpressionRequest(a, b));
+            System.out.println(sum);
+        }
         
-        DefaultImplicitCastor implicitCastor = new DefaultImplicitCastor();
-        implicitCastor.allowImplicitCast(intType, doubleType, castIntToDoubleOperation);
+        if(true) {
+            Expression a = new DoubleConstExpression(doubleType, "1");
+            Expression b = new DoubleConstExpression(doubleType, "2");
+            Expression sum = compiler.compile(new MakeOperatorAddExpressionRequest(a, b));
+            System.out.println(sum);
+        }
         
-        Expression expression = operationRepository.process(Intention.Add, Arrays.<Expression>asList(
-                new IntConstExpression(intType), 
-                new DoubleConstExpression(doubleType)), implicitCastor);
-        System.out.println(expression);
+        if(true) {
+            Expression a = new IntConstExpression(intType, "1");
+            Expression b = new DoubleConstExpression(doubleType, "2");
+            Expression sum = compiler.compile(new MakeOperatorAddExpressionRequest(a, b));
+            System.out.println(sum);
+        }
         
-        CompilingDOMExpressionVisitor compilingDomExpressionVisitor = new CompilingDOMExpressionVisitor(
-                intType, 
-                doubleType, 
-                operationRepository, 
-                implicitCastor);
-        DOMExpressionCompiler domExpressionCompiler = new DOMExpressionCompiler(compilingDomExpressionVisitor);
+        if(true) {
+            Expression e = new IntConstExpression(intType, "1");
+            Expression cast = compiler.compile(new MakeOperatorCastExpressionRequest(doubleType, e));
+            System.out.println(cast);
+        }
         
-        DOMExpression domExpression = new DOMAddExpression(
-                new DOMIntLiteralExpression(), 
-                new DOMDoubleLiteralExpression());
-        Expression expression2 = domExpressionCompiler.compile(domExpression);
-        System.out.println(expression2);
+        if(true) {
+            Expression e = new DoubleConstExpression(doubleType, "1");
+            Expression cast = compiler.compile(new MakeOperatorCastExpressionRequest(intType, e));
+            System.out.println(cast);
+        }
+        
+        if(true) {
+            Expression e = new IntConstExpression(intType, "1");
+            Expression cast = compiler.compile(new MakeOperatorCastExpressionRequest(intType, e));
+            System.out.println(cast);
+        }
+        
+        if(true) {
+            Expression e = new DoubleConstExpression(doubleType, "1");
+            Expression cast = compiler.compile(new MakeOperatorCastExpressionRequest(doubleType, e));
+            System.out.println(cast);
+        }
     }
 }

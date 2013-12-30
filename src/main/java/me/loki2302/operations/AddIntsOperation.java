@@ -1,13 +1,15 @@
 package me.loki2302.operations;
 
-import static me.loki2302.expressions.constraints.ExpressionConstraints.isOfType;
-import me.loki2302.Type;
+import me.loki2302.Intention;
 import me.loki2302.expressions.AddIntsExpression;
 import me.loki2302.expressions.Expression;
 import me.loki2302.expressions.constraints.ExpressionConstraint;
+import me.loki2302.expressions.constraints.ExpressionIsOfCompatibleTypeExpressionConstraint;
+import me.loki2302.types.Type;
 
-public class AddIntsOperation extends BinaryOperation {
-    private final Type intType;        
+
+public class AddIntsOperation extends AbstractEEEOperation {
+    private final Type intType;
     
     public AddIntsOperation(Type intType) {
         this.intType = intType;
@@ -15,21 +17,21 @@ public class AddIntsOperation extends BinaryOperation {
     
     @Override
     public Intention getIntention() {
-        return Intention.Add;
+        return Intention.OperatorAdd;
+    }
+    
+    @Override
+    protected ExpressionConstraint getLeftExpressionConstraint() {            
+        return new ExpressionIsOfCompatibleTypeExpressionConstraint(intType);
     }
 
     @Override
-    protected ExpressionConstraint getLeftConstraint() {
-        return isOfType(intType);
+    protected ExpressionConstraint getRightExpressionConstraint() {
+        return new ExpressionIsOfCompatibleTypeExpressionConstraint(intType);
     }
 
     @Override
-    protected ExpressionConstraint getRightConstraint() {
-        return isOfType(intType);
-    }
-
-    @Override
-    protected Expression processBinary(Expression left, Expression right) {
+    protected Expression processSafe(Expression left, Expression right) {
         return new AddIntsExpression(intType, left, right);
-    }        
+    }               
 }

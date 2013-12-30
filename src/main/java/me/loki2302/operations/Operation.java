@@ -2,10 +2,10 @@ package me.loki2302.operations;
 
 import java.util.List;
 
-import me.loki2302.compiler.ImplicitCastor;
-import me.loki2302.expressions.Expression;
+import me.loki2302.Compiler;
+import me.loki2302.Intention;
 
 public interface Operation {
     Intention getIntention();
-    ExpressionResult process(ImplicitCastor implicitCastor, List<Expression> arguments);
+    OperationResult process(Compiler compiler, List<Object> arguments);
 }

@@ -1,9 +1,10 @@
-package me.loki2302;
+package me.loki2302.types;
 
-public class Type {
+
+public class PrimitiveType implements Type {
     private final String typeName;
     
-    public Type(String typeName) {
+    public PrimitiveType(String typeName) {
         this.typeName = typeName;
     }
     

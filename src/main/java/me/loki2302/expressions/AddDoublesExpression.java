@@ -1,14 +1,34 @@
 package me.loki2302.expressions;
 
-import me.loki2302.Type;
+import me.loki2302.types.Type;
 
-public class AddDoublesExpression extends BinaryExpression {        
-    public AddDoublesExpression(Type doubleType, Expression left, Expression right) {
-        super(doubleType, left, right);
+
+public class AddDoublesExpression implements Expression {
+    private final Type doubleType;
+    private final Expression leftExpression;
+    private final Expression rightExpression;
+    
+    public AddDoublesExpression(Type doubleType, Expression leftExpression, Expression rightExpression) {
+        this.doubleType = doubleType;
+        this.leftExpression = leftExpression;
+        this.rightExpression = rightExpression;
+    }
+    
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+    
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public Type getType() {
+        return doubleType;
     }
     
     @Override
     public String toString() {
-        return String.format("dadd(%s,%s)", getLeft(), getRight());
+        return String.format("dadd(%s,%s)", leftExpression, rightExpression);
     }
 }

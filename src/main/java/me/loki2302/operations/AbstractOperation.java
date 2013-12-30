@@ -3,36 +3,37 @@ package me.loki2302.operations;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.loki2302.compiler.ImplicitCastor;
-import me.loki2302.expressions.Expression;
-import me.loki2302.expressions.constraints.ConstraintMatch;
-import me.loki2302.expressions.constraints.ExpressionConstraint;
+import me.loki2302.Compiler;
+import me.loki2302.operations.constraints.ArgumentConstraint;
+import me.loki2302.operations.constraints.ConstrainedArgumentResult;
 
 public abstract class AbstractOperation implements Operation {
     @Override
-    public ExpressionResult process(ImplicitCastor implicitCastor, List<Expression> arguments) {
-        if(arguments.size() != getParameterCount()) {
-            return ExpressionResult.error();
+    public OperationResult process(Compiler compiler, List<Object> arguments) {
+        int requiredArgumentCount = getArgumentCount();
+        if(arguments.size() != requiredArgumentCount) {
+            return OperationResult.fail();
         }
         
-        int score = 0;            
-        List<Expression> adaptedArguments = new ArrayList<Expression>();
-        for(int parameterIndex = 0; parameterIndex < getParameterCount(); ++parameterIndex) {
-            ExpressionConstraint expressionConstraint = getExpressionConstraint(parameterIndex);
-            Expression argument = arguments.get(parameterIndex);
-            ConstraintMatch constraintMatch = expressionConstraint.match(argument, implicitCastor);
-            if(!constraintMatch.ok) {
-                return ExpressionResult.error();
-            }                
+        int totalScore = 0;
+        List<Object> safeArguments = new ArrayList<Object>();
+        for(int i = 0; i < requiredArgumentCount; ++i) {
+            ArgumentConstraint argumentConstraint = getArgumentConstraint(i);
+            Object argument = arguments.get(i);
+            ConstrainedArgumentResult constrainedArgumentResult = argumentConstraint.test(compiler, argument);
+            if(!constrainedArgumentResult.ok) {
+                return OperationResult.fail();
+            }
             
-            score += constraintMatch.score;
-            adaptedArguments.add(constraintMatch.expression);
+            totalScore += constrainedArgumentResult.score;
+            safeArguments.add(constrainedArgumentResult.constrainedArgument);
         }
-                    
-        return ExpressionResult.ok(score, processSafe(adaptedArguments));
+        
+        Object result = processSafe(safeArguments);
+        return OperationResult.ok(totalScore, result);
     }
     
-    protected abstract int getParameterCount();
-    protected abstract ExpressionConstraint getExpressionConstraint(int parameterIndex);
-    protected abstract Expression processSafe(List<Expression> arguments);
+    protected abstract int getArgumentCount();
+    protected abstract ArgumentConstraint getArgumentConstraint(int index);
+    protected abstract Object processSafe(List<Object> safeArguments);
 }
