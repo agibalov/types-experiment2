@@ -1,5 +1,9 @@
 package me.loki2302.syntax;
 
+import me.loki2302.syntax.dom.DOMExpression;
+import me.loki2302.syntax.dom.DoubleLiteralDOMExpression;
+import me.loki2302.syntax.dom.IntLiteralDOMExpression;
+import me.loki2302.syntax.dom.OperatorAddDOMExpression;
 import japa.parser.JavaParser;
 import japa.parser.ParseException;
 import japa.parser.ast.expr.BinaryExpr;

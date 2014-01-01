@@ -1,4 +1,4 @@
-package me.loki2302.syntax;
+package me.loki2302.syntax.dom;
 
 public class OperatorAddDOMExpression implements DOMExpression {
     private final DOMExpression leftExpression;

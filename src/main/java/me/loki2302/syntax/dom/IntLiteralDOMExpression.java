@@ -1,4 +1,4 @@
-package me.loki2302.syntax;
+package me.loki2302.syntax.dom;
 
 public class IntLiteralDOMExpression implements DOMExpression {
     private final String literalString;

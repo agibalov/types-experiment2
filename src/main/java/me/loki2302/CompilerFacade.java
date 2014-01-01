@@ -9,47 +9,23 @@ import me.loki2302.semantics.operations.CastDoubleToIntOperation;
 import me.loki2302.semantics.operations.CastIntToDoubleOperation;
 import me.loki2302.semantics.operations.MakeDoubleConstExpressionOperation;
 import me.loki2302.semantics.operations.MakeIntConstExpressionOperation;
-import me.loki2302.semantics.requests.MakeDoubleConstExpressionRequest;
-import me.loki2302.semantics.requests.MakeIntConstExpressionRequest;
-import me.loki2302.semantics.requests.MakeOperatorAddExpressionRequest;
 import me.loki2302.semantics.types.PrimitiveType;
 import me.loki2302.semantics.types.Type;
-import me.loki2302.syntax.DOMExpression;
-import me.loki2302.syntax.DOMExpressionVisitor;
-import me.loki2302.syntax.DoubleLiteralDOMExpression;
-import me.loki2302.syntax.IntLiteralDOMExpression;
-import me.loki2302.syntax.OperatorAddDOMExpression;
 import me.loki2302.syntax.Parser;
+import me.loki2302.syntax.dom.DOMExpression;
 
 public class CompilerFacade {
     private final Parser parser;
-    private final Compiler compiler;
+    private final CompilingDOMExpressionVisitor compilingDOMExpressionVisitor;
     
-    public CompilerFacade(Parser parser, Compiler compiler) {
+    public CompilerFacade(Parser parser, CompilingDOMExpressionVisitor compilingDOMExpressionVisitor) {
         this.parser = parser;
-        this.compiler = compiler;
+        this.compilingDOMExpressionVisitor = compilingDOMExpressionVisitor;
     }
     
     public Expression compile(String expressionString) {
         DOMExpression domExpression = parser.parse(expressionString);
-        return domExpression.accept(new DOMExpressionVisitor<Expression>() {
-            @Override
-            public Expression visit(IntLiteralDOMExpression e) {
-                return compiler.compile(new MakeIntConstExpressionRequest(e.getLiteralString()));
-            }
-
-            @Override
-            public Expression visit(DoubleLiteralDOMExpression e) {
-                return compiler.compile(new MakeDoubleConstExpressionRequest(e.getLiteralString()));
-            }
-
-            @Override
-            public Expression visit(OperatorAddDOMExpression e) {
-                Expression leftExpression = e.getLeftExpression().accept(this);
-                Expression rightExpression = e.getRightExpression().accept(this);
-                return compiler.compile(new MakeOperatorAddExpressionRequest(leftExpression, rightExpression));
-            }
-        }); 
+        return domExpression.accept(compilingDOMExpressionVisitor); 
     }
     
     public static CompilerFacade makeDefault() {
@@ -71,7 +47,8 @@ public class CompilerFacade {
         operationRepository.addOperation(new MakeDoubleConstExpressionOperation(doubleType));
         
         Compiler compiler = new Compiler(operationRepository, implicitCastOperationRepository);
+        CompilingDOMExpressionVisitor compilingDOMExpressionVisitor = new CompilingDOMExpressionVisitor(compiler);
         
-        return new CompilerFacade(parser, compiler);
+        return new CompilerFacade(parser, compilingDOMExpressionVisitor);
     }
 }
