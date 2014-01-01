@@ -1,7 +1,7 @@
 package me.loki2302;
 
 import static org.junit.Assert.*;
-import me.loki2302.dom.Parser;
+import me.loki2302.syntax.Parser;
 
 import org.junit.Test;
 

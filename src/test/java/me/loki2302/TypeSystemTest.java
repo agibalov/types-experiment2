@@ -1,22 +1,24 @@
 package me.loki2302;
 
 import static org.junit.Assert.*;
-import me.loki2302.expressions.DoubleConstExpression;
-import me.loki2302.expressions.Expression;
-import me.loki2302.expressions.IntConstExpression;
-import me.loki2302.operations.AddDoublesOperation;
-import me.loki2302.operations.AddIntsOperation;
-import me.loki2302.operations.CastDoubleToIntOperation;
-import me.loki2302.operations.CastIntToDoubleOperation;
-import me.loki2302.operations.MakeDoubleConstExpressionOperation;
-import me.loki2302.operations.MakeIntConstExpressionOperation;
-import me.loki2302.requests.MakeDoubleConstExpressionRequest;
-import me.loki2302.requests.MakeIntConstExpressionRequest;
-import me.loki2302.requests.MakeOperatorAddExpressionRequest;
-import me.loki2302.requests.MakeOperatorCastExpressionRequest;
-import me.loki2302.requests.Request;
-import me.loki2302.types.PrimitiveType;
-import me.loki2302.types.Type;
+import me.loki2302.semantics.Compiler;
+import me.loki2302.semantics.OperationRepository;
+import me.loki2302.semantics.expressions.DoubleConstExpression;
+import me.loki2302.semantics.expressions.Expression;
+import me.loki2302.semantics.expressions.IntConstExpression;
+import me.loki2302.semantics.operations.AddDoublesOperation;
+import me.loki2302.semantics.operations.AddIntsOperation;
+import me.loki2302.semantics.operations.CastDoubleToIntOperation;
+import me.loki2302.semantics.operations.CastIntToDoubleOperation;
+import me.loki2302.semantics.operations.MakeDoubleConstExpressionOperation;
+import me.loki2302.semantics.operations.MakeIntConstExpressionOperation;
+import me.loki2302.semantics.requests.MakeDoubleConstExpressionRequest;
+import me.loki2302.semantics.requests.MakeIntConstExpressionRequest;
+import me.loki2302.semantics.requests.MakeOperatorAddExpressionRequest;
+import me.loki2302.semantics.requests.MakeOperatorCastExpressionRequest;
+import me.loki2302.semantics.requests.Request;
+import me.loki2302.semantics.types.PrimitiveType;
+import me.loki2302.semantics.types.Type;
 
 import org.junit.Test;
 
@@ -33,8 +35,8 @@ public class TypeSystemTest {
     
     @Test
     public void canMakeDoubleConst() {
-        String result = compile(new MakeDoubleConstExpressionRequest("1"));
-        assertEquals("dconst(1)", result);
+        String result = compile(new MakeDoubleConstExpressionRequest("1.0"));
+        assertEquals("dconst(1.0)", result);
     }
     
     @Test
