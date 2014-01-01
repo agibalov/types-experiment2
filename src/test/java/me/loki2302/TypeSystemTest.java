@@ -20,7 +20,7 @@ import me.loki2302.types.Type;
 
 import org.junit.Test;
 
-public class AppTest {
+public class TypeSystemTest {
     private final static Type intType = new PrimitiveType("int");
     private final static Type doubleType = new PrimitiveType("double");
     private final static Compiler compiler = makeCompiler();
