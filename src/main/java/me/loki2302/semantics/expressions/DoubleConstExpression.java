@@ -10,6 +10,10 @@ public class DoubleConstExpression implements Expression {
         this.doubleType = doubleType;
         this.value = value;
     }
+    
+    public String getValue() {
+        return value;
+    }
 
     @Override
     public Type getType() {
@@ -19,5 +23,10 @@ public class DoubleConstExpression implements Expression {
     @Override
     public String toString() {
         return String.format("dconst(%s)", value);
+    }
+
+    @Override
+    public <TResult> TResult accept(ExpressionVisitor<TResult> visitor) {
+        return visitor.visit(this);
     }
 }

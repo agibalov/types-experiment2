@@ -30,4 +30,9 @@ public class AddIntsExpression implements Expression {
     public String toString() {
         return String.format("iadd(%s,%s)", leftExpression, rightExpression);
     }
+
+    @Override
+    public <TResult> TResult accept(ExpressionVisitor<TResult> visitor) {
+        return visitor.visit(this);
+    }
 }

@@ -4,4 +4,5 @@ import me.loki2302.semantics.types.Type;
 
 public interface Expression {
     Type getType();
+    <TResult> TResult accept(ExpressionVisitor<TResult> visitor);
 }

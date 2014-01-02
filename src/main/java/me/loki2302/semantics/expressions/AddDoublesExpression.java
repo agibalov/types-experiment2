@@ -30,4 +30,9 @@ public class AddDoublesExpression implements Expression {
     public String toString() {
         return String.format("dadd(%s,%s)", leftExpression, rightExpression);
     }
+
+    @Override
+    public <TResult> TResult accept(ExpressionVisitor<TResult> visitor) {
+        return visitor.visit(this);
+    }
 }

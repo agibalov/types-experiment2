@@ -10,6 +10,10 @@ public class IntConstExpression implements Expression {
         this.intType = intType;
         this.value = value;
     }
+    
+    public String getValue() {
+        return value;
+    }
 
     @Override
     public Type getType() {
@@ -19,5 +23,10 @@ public class IntConstExpression implements Expression {
     @Override
     public String toString() {
         return String.format("iconst(%s)", value);
+    }
+
+    @Override
+    public <TResult> TResult accept(ExpressionVisitor<TResult> visitor) {
+        return visitor.visit(this);
     }
 }

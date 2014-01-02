@@ -24,4 +24,9 @@ public class CastIntToDoubleExpression implements Expression {
     public String toString() {
         return String.format("i2d(%s)", expression);
     }
+
+    @Override
+    public <TResult> TResult accept(ExpressionVisitor<TResult> visitor) {
+        return visitor.visit(this);
+    }
 }
