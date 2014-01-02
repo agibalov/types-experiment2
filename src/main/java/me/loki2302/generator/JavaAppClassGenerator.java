@@ -20,7 +20,7 @@ public class JavaAppClassGenerator {
     }
     
     public byte[] generateBytecode(Expression expression) {            
-        InsnList expressionInsnList = expression.accept(new InsnListGeneratingExpressionVisitor());
+        InsnList expressionInsnList = expression.accept(insnListGeneratingExpressionVisitor);
         
         MethodNode mainMethodNode = new MethodNode(Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC, "main", "([Ljava/lang/String;)V", null, null);
         mainMethodNode.instructions.add(new FieldInsnNode(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;"));
