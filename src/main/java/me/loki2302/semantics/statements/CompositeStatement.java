@@ -17,4 +17,9 @@ public class CompositeStatement implements Statement {
     public <TResult> TResult accept(StatementVisitor<TResult> visitor) {
         return visitor.visit(this);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("S[%s]", statements);
+    }
 }

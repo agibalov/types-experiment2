@@ -4,16 +4,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import me.loki2302.generator.JavaAppClassGenerator;
-import me.loki2302.semantics.expressions.Expression;
+import me.loki2302.semantics.statements.Statement;
 
 public class App {
     public static void main(String[] args) throws IOException {
         CompilerFacade compilerFacade = CompilerFacade.makeDefault();
-        Expression e = compilerFacade.compile(" 1 + 3.14 ");
-        System.out.println(e);
+        Statement s = compilerFacade.compileStatement(" {1 + 3.14;1+1;} ");
+        System.out.println(s);
         
         JavaAppClassGenerator javaAppClassGenerator = JavaAppClassGenerator.makeDefault();
-        byte[] appClassBytes = javaAppClassGenerator.generateBytecode(e);
+        byte[] appClassBytes = javaAppClassGenerator.generateBytecode(s);
                 
         FileOutputStream classFileOutputStream = new FileOutputStream("NewApp.class");
         try {

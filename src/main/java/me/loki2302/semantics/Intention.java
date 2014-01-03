@@ -5,5 +5,7 @@ public enum Intention {
     MakeDoubleConst,
     OperatorAdd,
     OperatorCast,
-    MakeFunction
+    MakeFunction,
+    MakeCompositeStatement,
+    MakeExpressionStatement
 }

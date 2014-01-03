@@ -19,5 +19,5 @@ public class ExpressionIsOfExactTypeExpressionConstraint implements ExpressionCo
         }
         
         return ConstrainedExpressionResult.fail();
-    }        
+    }
 }
