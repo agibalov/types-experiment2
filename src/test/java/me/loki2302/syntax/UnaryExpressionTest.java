@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import me.loki2302.syntax.ParseResult;
-import me.loki2302.syntax.dom.DOMUnaryExpressionType;
+import me.loki2302.syntax.dom.expressions.DOMUnaryExpressionType;
 import me.loki2302.syntax.expectations.parser.ParseResultExpectation;
 import me.loki2302.syntax.parser.ExpressionParser;
 

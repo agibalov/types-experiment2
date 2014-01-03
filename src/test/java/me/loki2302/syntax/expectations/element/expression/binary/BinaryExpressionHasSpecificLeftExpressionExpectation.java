@@ -1,7 +1,7 @@
 package me.loki2302.syntax.expectations.element.expression.binary;
 
-import me.loki2302.syntax.dom.DOMBinaryExpression;
-import me.loki2302.syntax.dom.DOMExpression;
+import me.loki2302.syntax.dom.expressions.DOMBinaryExpression;
+import me.loki2302.syntax.dom.expressions.DOMExpression;
 import me.loki2302.syntax.expectations.element.expression.ExpressionExpectation;
 
 public class BinaryExpressionHasSpecificLeftExpressionExpectation implements BinaryExpressionExpectation {

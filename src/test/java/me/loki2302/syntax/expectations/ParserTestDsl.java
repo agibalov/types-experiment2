@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations;
 
-import me.loki2302.syntax.dom.DOMBinaryExpressionType;
-import me.loki2302.syntax.dom.DOMLiteralType;
-import me.loki2302.syntax.dom.DOMUnaryExpressionType;
+import me.loki2302.syntax.dom.expressions.DOMBinaryExpressionType;
+import me.loki2302.syntax.dom.expressions.DOMLiteralType;
+import me.loki2302.syntax.dom.expressions.DOMUnaryExpressionType;
 import me.loki2302.syntax.expectations.element.ElementExpectation;
 import me.loki2302.syntax.expectations.element.ElementIsExpressionExpectation;
 import me.loki2302.syntax.expectations.element.ElementIsFunctionDefinitionExpectation;

@@ -4,8 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import me.loki2302.syntax.dom.DOMCompositeStatement;
-import me.loki2302.syntax.dom.DOMStatement;
+import me.loki2302.syntax.dom.statements.DOMCompositeStatement;
+import me.loki2302.syntax.dom.statements.DOMStatement;
 import me.loki2302.syntax.expectations.element.statement.StatementExpectation;
 
 public class CompositeStatementHasChildExpectation implements CompositeStatementExpectation {

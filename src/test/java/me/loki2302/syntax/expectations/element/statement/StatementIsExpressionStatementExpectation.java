@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations.element.statement;
 
 import static org.junit.Assert.assertTrue;
-import me.loki2302.syntax.dom.DOMExpressionStatement;
-import me.loki2302.syntax.dom.DOMStatement;
+import me.loki2302.syntax.dom.statements.DOMExpressionStatement;
+import me.loki2302.syntax.dom.statements.DOMStatement;
 import me.loki2302.syntax.expectations.element.statement.expression.ExpressionStatementExpectation;
 
 public class StatementIsExpressionStatementExpectation implements StatementExpectation {

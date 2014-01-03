@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import me.loki2302.syntax.dom.DOMExpression;
-import me.loki2302.syntax.dom.DOMFunctionCallExpression;
+import me.loki2302.syntax.dom.expressions.DOMExpression;
+import me.loki2302.syntax.dom.expressions.DOMFunctionCallExpression;
 import me.loki2302.syntax.expectations.element.expression.ExpressionExpectation;
 
 public class FunctionCallHasArgument implements FunctionCallExpressionExpectation {

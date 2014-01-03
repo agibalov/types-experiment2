@@ -1,7 +1,7 @@
 package me.loki2302.syntax.expectations.element.statement.variabledefinition;
 
 import static org.junit.Assert.assertEquals;
-import me.loki2302.syntax.dom.DOMVariableDefinitionStatement;
+import me.loki2302.syntax.dom.statements.DOMVariableDefinitionStatement;
 
 public class VariableDefinitionHasVariableNameExpectation implements VariableDefinitionStatementExpectation {
     private final String variableName;

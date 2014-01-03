@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations.element.expression;
 
 import static org.junit.Assert.*;
-import me.loki2302.syntax.dom.DOMExpression;
-import me.loki2302.syntax.dom.DOMLiteralExpression;
+import me.loki2302.syntax.dom.expressions.DOMExpression;
+import me.loki2302.syntax.dom.expressions.DOMLiteralExpression;
 import me.loki2302.syntax.expectations.element.expression.literal.LiteralExpressionExpectation;
 
 public class ExpressionIsLiteralExpressionExpectation implements ExpressionExpectation {

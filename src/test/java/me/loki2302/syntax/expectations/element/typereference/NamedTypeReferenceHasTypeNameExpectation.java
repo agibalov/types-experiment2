@@ -1,7 +1,7 @@
 package me.loki2302.syntax.expectations.element.typereference;
 
 import static org.junit.Assert.assertEquals;
-import me.loki2302.syntax.dom.DOMNamedTypeReference;
+import me.loki2302.syntax.dom.types.DOMNamedTypeReference;
 
 public class NamedTypeReferenceHasTypeNameExpectation implements NamedTypeReferenceExpectation {
     private final String typeName;

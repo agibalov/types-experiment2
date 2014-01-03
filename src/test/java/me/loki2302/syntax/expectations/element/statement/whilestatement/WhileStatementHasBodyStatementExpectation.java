@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations.element.statement.whilestatement;
 
 import static org.junit.Assert.assertNotNull;
-import me.loki2302.syntax.dom.DOMStatement;
-import me.loki2302.syntax.dom.DOMWhileStatement;
+import me.loki2302.syntax.dom.statements.DOMStatement;
+import me.loki2302.syntax.dom.statements.DOMWhileStatement;
 import me.loki2302.syntax.expectations.element.statement.StatementExpectation;
 
 public class WhileStatementHasBodyStatementExpectation implements WhileStatementExpectation {

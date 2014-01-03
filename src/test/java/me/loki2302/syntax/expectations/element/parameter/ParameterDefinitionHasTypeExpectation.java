@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations.element.parameter;
 
 import static org.junit.Assert.assertNotNull;
-import me.loki2302.syntax.dom.DOMParameterDefinition;
-import me.loki2302.syntax.dom.DOMTypeReference;
+import me.loki2302.syntax.dom.functions.DOMParameterDefinition;
+import me.loki2302.syntax.dom.types.DOMTypeReference;
 import me.loki2302.syntax.expectations.element.typereference.TypeReferenceExpectation;
 
 public class ParameterDefinitionHasTypeExpectation implements ParameterDefinitionExpectation {

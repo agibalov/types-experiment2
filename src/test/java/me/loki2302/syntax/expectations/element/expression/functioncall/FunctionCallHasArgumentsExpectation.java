@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import me.loki2302.syntax.dom.DOMExpression;
-import me.loki2302.syntax.dom.DOMFunctionCallExpression;
+import me.loki2302.syntax.dom.expressions.DOMExpression;
+import me.loki2302.syntax.dom.expressions.DOMFunctionCallExpression;
 
 public class FunctionCallHasArgumentsExpectation implements FunctionCallExpressionExpectation {
     private final int argumentCount;

@@ -1,7 +1,7 @@
 package me.loki2302.syntax.expectations.element.expression.variable;
 
 import static org.junit.Assert.assertEquals;
-import me.loki2302.syntax.dom.DOMVariableReferenceExpression;
+import me.loki2302.syntax.dom.expressions.DOMVariableReferenceExpression;
 
 public class VariableHasSpecificNameExpectation implements VariableReferenceExpectation {
     private final String variableName;

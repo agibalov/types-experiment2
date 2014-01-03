@@ -4,5 +4,6 @@ public enum Intention {
     MakeIntConst,
     MakeDoubleConst,
     OperatorAdd,
-    OperatorCast
+    OperatorCast,
+    MakeFunction
 }

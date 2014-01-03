@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations.element.statement.variabledefinition;
 
 import static org.junit.Assert.assertNotNull;
-import me.loki2302.syntax.dom.DOMTypeReference;
-import me.loki2302.syntax.dom.DOMVariableDefinitionStatement;
+import me.loki2302.syntax.dom.statements.DOMVariableDefinitionStatement;
+import me.loki2302.syntax.dom.types.DOMTypeReference;
 import me.loki2302.syntax.expectations.element.typereference.TypeReferenceExpectation;
 
 public class VariableDefinitionHasTypeReferenceExpectation implements VariableDefinitionStatementExpectation {

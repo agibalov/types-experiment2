@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations.element.expression.unary;
 
 import static org.junit.Assert.assertEquals;
-import me.loki2302.syntax.dom.DOMUnaryExpression;
-import me.loki2302.syntax.dom.DOMUnaryExpressionType;
+import me.loki2302.syntax.dom.expressions.DOMUnaryExpression;
+import me.loki2302.syntax.dom.expressions.DOMUnaryExpressionType;
 
 public class UnaryExpressionHasSpecificTypeExpectation implements UnaryExpressionExpectation {
     private final DOMUnaryExpressionType expressionType;

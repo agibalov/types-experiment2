@@ -24,5 +24,5 @@ public class ArgumentIsStringConstraint implements ArgumentConstraint {
         }
         
         return ConstrainedArgumentResult.ok(constrainedStringResult.score, constrainedStringResult.constrainedString);
-    }        
+    }
 }

@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations.element.statement.ifstatement;
 
 import static org.junit.Assert.assertNotNull;
-import me.loki2302.syntax.dom.DOMExpression;
-import me.loki2302.syntax.dom.DOMIfStatement;
+import me.loki2302.syntax.dom.expressions.DOMExpression;
+import me.loki2302.syntax.dom.statements.DOMIfStatement;
 import me.loki2302.syntax.expectations.element.expression.ExpressionExpectation;
 
 public class IfStatementHasConditionExpressionExpectation implements IfStatementExpectation {

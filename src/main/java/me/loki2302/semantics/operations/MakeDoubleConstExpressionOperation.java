@@ -27,5 +27,5 @@ public class MakeDoubleConstExpressionOperation extends MakeConstExpressionOpera
     @Override
     public Intention getIntention() {
         return Intention.MakeDoubleConst;
-    }                
+    }
 }

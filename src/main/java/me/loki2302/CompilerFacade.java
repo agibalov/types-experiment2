@@ -13,7 +13,7 @@ import me.loki2302.semantics.types.PrimitiveType;
 import me.loki2302.semantics.types.Type;
 import me.loki2302.syntax.ParseResult;
 import me.loki2302.syntax.Parser;
-import me.loki2302.syntax.dom.DOMExpression;
+import me.loki2302.syntax.dom.expressions.DOMExpression;
 
 public class CompilerFacade {
     private final Parser parser;

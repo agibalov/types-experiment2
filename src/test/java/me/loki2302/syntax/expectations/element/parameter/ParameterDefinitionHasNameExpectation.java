@@ -1,7 +1,7 @@
 package me.loki2302.syntax.expectations.element.parameter;
 
 import static org.junit.Assert.assertEquals;
-import me.loki2302.syntax.dom.DOMParameterDefinition;
+import me.loki2302.syntax.dom.functions.DOMParameterDefinition;
 
 public class ParameterDefinitionHasNameExpectation implements ParameterDefinitionExpectation {
     private final String parameterName;

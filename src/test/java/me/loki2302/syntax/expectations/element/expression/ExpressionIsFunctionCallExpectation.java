@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations.element.expression;
 
 import static org.junit.Assert.assertTrue;
-import me.loki2302.syntax.dom.DOMExpression;
-import me.loki2302.syntax.dom.DOMFunctionCallExpression;
+import me.loki2302.syntax.dom.expressions.DOMExpression;
+import me.loki2302.syntax.dom.expressions.DOMFunctionCallExpression;
 import me.loki2302.syntax.expectations.element.expression.functioncall.FunctionCallExpressionExpectation;
 
 public class ExpressionIsFunctionCallExpectation implements ExpressionExpectation {

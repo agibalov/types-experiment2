@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations.element.expression.cast;
 
 import static org.junit.Assert.assertNotNull;
-import me.loki2302.syntax.dom.DOMExplicitCastExpression;
-import me.loki2302.syntax.dom.DOMExpression;
+import me.loki2302.syntax.dom.expressions.DOMExplicitCastExpression;
+import me.loki2302.syntax.dom.expressions.DOMExpression;
 import me.loki2302.syntax.expectations.element.expression.ExpressionExpectation;
 
 public class ExplicitCastExpressionHasInnerExpressionExpectation implements ExplicitCastExpressionExpectation {

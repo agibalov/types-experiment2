@@ -5,7 +5,7 @@ import me.loki2302.semantics.types.Type;
 public class AddDoublesExpression implements Expression {
     private final Type doubleType;
     private final Expression leftExpression;
-    private final Expression rightExpression;
+    private final Expression rightExpression;            
     
     public AddDoublesExpression(Type doubleType, Expression leftExpression, Expression rightExpression) {
         this.doubleType = doubleType;

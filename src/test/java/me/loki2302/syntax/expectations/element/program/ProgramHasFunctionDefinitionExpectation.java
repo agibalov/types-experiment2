@@ -4,8 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import me.loki2302.syntax.dom.DOMFunctionDefinition;
-import me.loki2302.syntax.dom.DOMProgram;
+import me.loki2302.syntax.dom.functions.DOMFunctionDefinition;
+import me.loki2302.syntax.dom.programs.DOMProgram;
 import me.loki2302.syntax.expectations.element.function.FunctionDefinitionExpectation;
 
 public class ProgramHasFunctionDefinitionExpectation implements ProgramExpectation {

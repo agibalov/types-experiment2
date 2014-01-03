@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations.element.expression.literal;
 
 import static org.junit.Assert.assertEquals;
-import me.loki2302.syntax.dom.DOMLiteralExpression;
-import me.loki2302.syntax.dom.DOMLiteralType;
+import me.loki2302.syntax.dom.expressions.DOMLiteralExpression;
+import me.loki2302.syntax.dom.expressions.DOMLiteralType;
 
 public class LiteralExpressionHasSpecificTypeExpectation implements LiteralExpressionExpectation {
 	private final DOMLiteralType literalType;

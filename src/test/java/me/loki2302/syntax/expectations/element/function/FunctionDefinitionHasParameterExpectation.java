@@ -4,8 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import me.loki2302.syntax.dom.DOMFunctionDefinition;
-import me.loki2302.syntax.dom.DOMParameterDefinition;
+import me.loki2302.syntax.dom.functions.DOMFunctionDefinition;
+import me.loki2302.syntax.dom.functions.DOMParameterDefinition;
 import me.loki2302.syntax.expectations.element.parameter.ParameterDefinitionExpectation;
 
 public class FunctionDefinitionHasParameterExpectation implements FunctionDefinitionExpectation {

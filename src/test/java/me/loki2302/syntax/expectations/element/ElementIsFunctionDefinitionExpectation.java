@@ -2,7 +2,7 @@ package me.loki2302.syntax.expectations.element;
 
 import static org.junit.Assert.assertTrue;
 import me.loki2302.syntax.dom.DOMElement;
-import me.loki2302.syntax.dom.DOMFunctionDefinition;
+import me.loki2302.syntax.dom.functions.DOMFunctionDefinition;
 import me.loki2302.syntax.expectations.element.function.FunctionDefinitionExpectation;
 
 public class ElementIsFunctionDefinitionExpectation implements ElementExpectation {

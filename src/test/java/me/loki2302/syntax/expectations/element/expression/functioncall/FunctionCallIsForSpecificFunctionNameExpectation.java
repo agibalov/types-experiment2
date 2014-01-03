@@ -1,7 +1,7 @@
 package me.loki2302.syntax.expectations.element.expression.functioncall;
 
 
-import me.loki2302.syntax.dom.DOMFunctionCallExpression;
+import me.loki2302.syntax.dom.expressions.DOMFunctionCallExpression;
 import static org.junit.Assert.*;
 
 public class FunctionCallIsForSpecificFunctionNameExpectation implements FunctionCallExpressionExpectation {

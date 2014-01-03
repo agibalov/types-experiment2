@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import me.loki2302.syntax.dom.DOMFunctionDefinition;
-import me.loki2302.syntax.dom.DOMProgram;
+import me.loki2302.syntax.dom.functions.DOMFunctionDefinition;
+import me.loki2302.syntax.dom.programs.DOMProgram;
 
 public class ProgramHasSpecificNumberOfFunctionsExpectation implements ProgramExpectation {
     private final int functionCount;

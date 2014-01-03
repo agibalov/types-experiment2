@@ -1,8 +1,8 @@
 package me.loki2302.syntax.expectations.element.expression.binary;
 
 import static org.junit.Assert.assertEquals;
-import me.loki2302.syntax.dom.DOMBinaryExpression;
-import me.loki2302.syntax.dom.DOMBinaryExpressionType;
+import me.loki2302.syntax.dom.expressions.DOMBinaryExpression;
+import me.loki2302.syntax.dom.expressions.DOMBinaryExpressionType;
 
 public class BinaryExpressionHasSpecificTypeExpectation implements BinaryExpressionExpectation {
 	private final DOMBinaryExpressionType expressionType;
