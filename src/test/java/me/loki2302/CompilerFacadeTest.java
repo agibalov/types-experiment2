@@ -1,6 +1,7 @@
 package me.loki2302;
 
 import static org.junit.Assert.assertEquals;
+import me.loki2302.CompilerFacade;
 import me.loki2302.semantics.expressions.Expression;
 
 import org.junit.Test;

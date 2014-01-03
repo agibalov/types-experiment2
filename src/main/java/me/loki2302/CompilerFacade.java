@@ -11,6 +11,7 @@ import me.loki2302.semantics.operations.MakeDoubleConstExpressionOperation;
 import me.loki2302.semantics.operations.MakeIntConstExpressionOperation;
 import me.loki2302.semantics.types.PrimitiveType;
 import me.loki2302.semantics.types.Type;
+import me.loki2302.syntax.ParseResult;
 import me.loki2302.syntax.Parser;
 import me.loki2302.syntax.dom.DOMExpression;
 
@@ -24,7 +25,12 @@ public class CompilerFacade {
     }
     
     public Expression compile(String expressionString) {
-        DOMExpression domExpression = parser.parse(expressionString);
+        ParseResult parseResult = parser.parseExpression(expressionString);
+        if(!parseResult.isOk()) {
+            throw new RuntimeException("Failed to parse");
+        }
+        
+        DOMExpression domExpression = (DOMExpression)parseResult.getDOMElement();
         return domExpression.accept(compilingDOMExpressionVisitor); 
     }
     
