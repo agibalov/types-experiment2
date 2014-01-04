@@ -13,7 +13,7 @@ import org.objectweb.asm.tree.InsnList;
 import org.objectweb.asm.tree.InsnNode;
 import org.objectweb.asm.tree.LdcInsnNode;
 
-public class InsnListGeneratingExpressionVisitor implements ExpressionVisitor<InsnList> {
+public class InsnListGeneratingExpressionVisitor implements ExpressionVisitor<InsnList> {    
     @Override
     public InsnList visit(AddDoublesExpression e) {
         InsnList leftExpressionInsnList = e.getLeftExpression().accept(this);

@@ -13,10 +13,10 @@ import org.objectweb.asm.tree.InsnList;
 import org.objectweb.asm.tree.MethodInsnNode;
 
 public class InsnListGeneratingStatementVisitor implements StatementVisitor<InsnList> {
-    private final InsnListGeneratingExpressionVisitor insnListGeneratingExpressionVisitor;
+    private final ExpressionCodeGenerator expressionCodeGenerator;
     
-    public InsnListGeneratingStatementVisitor(InsnListGeneratingExpressionVisitor insnListGeneratingExpressionVisitor) {
-        this.insnListGeneratingExpressionVisitor = insnListGeneratingExpressionVisitor;
+    public InsnListGeneratingStatementVisitor(ExpressionCodeGenerator expressionCodeGenerator) {
+        this.expressionCodeGenerator = expressionCodeGenerator;
     }
     
     @Override
@@ -35,7 +35,7 @@ public class InsnListGeneratingStatementVisitor implements StatementVisitor<Insn
         
         InsnList insnList = new InsnList();
         insnList.add(new FieldInsnNode(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;"));
-        insnList.add(expression.accept(insnListGeneratingExpressionVisitor));        
+        insnList.add(expressionCodeGenerator.generateCode(expression));
         
         // dirty hack
         if(((PrimitiveType)expression.getType()).getTypeName().equals("int")) {
